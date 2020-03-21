@@ -2,6 +2,7 @@ const express    = require('express');
 const bodyParser = require('body-parser');
 const logger     = require('morgan');
 const path       = require('path');
+const cors       = require('cors');
 const app        = express();
 const CONFIG     = require('./config.json');
 
@@ -13,6 +14,7 @@ app.set('env', NODE_ENV);
 
 app.use(logger('tiny'));
 app.use(bodyParser.json());
+app.use(cors({credentials: true, origin: true}));
 
 app.use('/', require(path.join(__dirname, 'router')));
 
