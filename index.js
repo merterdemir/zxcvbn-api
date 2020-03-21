@@ -14,7 +14,7 @@ const NODE_ENV = process.env.NODE_ENV || CONFIG.env;
 // Certificate
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + '/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + '/cert.pem', 'utf8');
-const ca = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + 'chain.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + '/chain.pem', 'utf8');
 const credentials = {
 	key: privateKey,
 	cert: certificate,
@@ -25,7 +25,9 @@ const credentials = {
 app.set('port', PORT);
 app.set('env', NODE_ENV);
 
-app.use(logger('tiny'));
+if (CONFIG.logging){
+  app.use(logger('tiny'));
+}
 app.use(bodyParser.json());
 app.use(cors({credentials: true, origin: true}));
 
