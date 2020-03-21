@@ -4,14 +4,15 @@ Web API for password strength estimation with zxcvbn by Dropbox. Please read [th
 **Demo:** [Password Strength Estimation with zxcvbn](https://strength.merterdemir.com/)
 
 ## Building
-Configure the `config.json` file according to your desired settings. By default, the server runs on 3000 Port, and in `development` environment. `yourdomain` should be equal to the domain you provide while creating your SSL signature:
+Configure the `config.json` file according to your desired settings. By default, the server runs on 3000 Port, in `development` environment, and without `logging` any request. `yourdomain` should be equal to the domain you provide while creating your SSL signature:
 
 ```json
 {
     "host": "localhost",
     "port": 3000,
     "env": "development",
-    "yourdomain": "localhost"
+    "yourdomain": "localhost",
+    "logging": false
 }
 ```
 
