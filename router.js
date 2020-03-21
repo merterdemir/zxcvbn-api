@@ -10,8 +10,12 @@ const get_strength = async (req, res, next) => {
         console.log("###########");
         console.log("Testing password strength of password...");
         const test_result = zxcvbn(password, user_inputs=[]);
-        console.log("Result:");
-        console.log(JSON.stringify(test_result));
+        if (test_result){
+        	console.log("Successful!");
+        }
+        else {
+        	console.log("No data returned!");
+        }
         console.log("###########");
         console.log("");
         res.json(test_result);
