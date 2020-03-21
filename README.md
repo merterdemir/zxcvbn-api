@@ -1,18 +1,23 @@
 # zxcvbn-api
 Web API for password strength estimation with zxcvbn by Dropbox. Please read [this article](https://dropbox.tech/security/zxcvbn-realistic-password-strength-estimation) by Dan Wheeler. Based on the implementation of [zxcvbn](https://github.com/dropbox/zxcvbn) tool.
 
+**Demo:** [Password Strength Estimation with zxcvbn](https://strength.merterdemir.com/)
+
 ## Building
-Configure the `config.json` file according to your desired settings. By default, the server runs on 3000 Port, and in `development` environment:
+Configure the `config.json` file according to your desired settings. By default, the server runs on 3000 Port, and in `development` environment. `yourdomain` should be equal to the domain you provide while creating your SSL signature:
 
 ```json
 {
     "host": "localhost",
     "port": 3000,
-    "env": "development"
+    "env": "development",
+    "yourdomain": "localhost"
 }
 ```
 
-To install the dependencies and start the API server:
+You can check out [this article](https://itnext.io/node-express-letsencrypt-generate-a-free-ssl-certificate-and-run-an-https-server-in-5-minutes-a730fbe528ca) to see how to create SSL certificates with Let's Encrypt and deploy for NodeJS.
+
+To install the dependencies and run the API server:
 
 ```bash
 npm install
@@ -22,7 +27,7 @@ npm start
 You should see an output like this:
 
 ```bash
-audited 167 packages in 0.951s
+added 56 packages from 39 contributors and audited 170 packages in 0.792s
 found 0 vulnerabilities
 ```
 
@@ -38,7 +43,7 @@ Web API Express Server started on Port 3000 | Environment : development
 In order to retrieve the results zxcvbn provides, just make a `GET` request to your host. For example you can make your request to your local machine as:
 
 ```
-http://localhost:3000/api/v1/strength/your_password
+https://localhost:3000/api/v1/strength/your_password
 ```
 
 API will return an JSON object which contains:

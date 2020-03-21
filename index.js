@@ -3,11 +3,24 @@ const bodyParser = require('body-parser');
 const logger     = require('morgan');
 const path       = require('path');
 const cors       = require('cors');
+const fs         = require('fs');
+const https      = require('https');
 const app        = express();
 const CONFIG     = require('./config.json');
 
 const PORT     = process.env.PORT || CONFIG.port;
 const NODE_ENV = process.env.NODE_ENV || CONFIG.env;
+
+// Certificate
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + '/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + '/cert.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/' + CONFIG.yourdomain + 'chain.pem', 'utf8');
+const credentials = {
+	key: privateKey,
+	cert: certificate,
+	ca: ca
+};
+
 
 app.set('port', PORT);
 app.set('env', NODE_ENV);
@@ -34,7 +47,9 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+const httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(PORT, () => {
   console.log(
     `Web API Express Server started on Port ${app.get(
       'port'
