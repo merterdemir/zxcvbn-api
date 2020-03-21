@@ -1,0 +1,30 @@
+{
+  "name": "zxcvbn-api",
+  "version": "1.0.0",
+  "description": "Web API for password strength estimation with zxcvbn by Dropbox",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/merterdemir/zxcvbn-api.git"
+  },
+  "keywords": [
+    "zxcvbn",
+    "web",
+    "api"
+  ],
+  "author": "Mert Erdemir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/merterdemir/zxcvbn-api/issues"
+  },
+  "homepage": "https://github.com/merterdemir/zxcvbn-api#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
