@@ -44,11 +44,15 @@ Web API Express Server started on Port 3000 | Environment : development
 In order to retrieve the results zxcvbn provides, just make a `GET` request to your host. For example you can make your request to your local machine as:
 
 ```
-https://localhost:3000/api/v1/strength/your_password
+https://localhost:3000/api/v1/strength/your_password_in_Hex_format
 ```
 
-**Note:** Please note that I advise you to URL encode your password before making a GET request to API. In some cases lke that your password contains 
-special characters such as ?, &, %, API might not be able to understand the given password.
+**Important Note:** Since we are trying to estimate the password strength and passwords may contain URL special characters such as /, ?, &, = and etc. 
+it was really hard to parse these for express even though you send your password in a URL encoded format. For example, slash (/, %2F) was not 
+recognized by express if it is more than one, or it is the first character. In order to solve this problem, I required the API only use Hexadecimal 
+encoding of the ASCII characters. Router will convert these Hexadecimal numbers to ASCII characters and then will estimate the password strength 
+by using zxcvbn tool. Thus, if you use this API, make sure that your password is converted to hexadecimal format (i.e. `p@ssw0rD/x$%` -> `70407373773072442f782425`) 
+while you are making request to API.
 
 API will return an JSON object which contains:
 
