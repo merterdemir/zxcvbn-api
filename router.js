@@ -26,7 +26,7 @@ const get_strength = async (req, res, next) => {
 };
 
 router
-  .route('/api/v1/strength/:password')
+  .route('/api/v1/strength/:password(*)')
   .get(get_strength);
 
 module.exports = router;

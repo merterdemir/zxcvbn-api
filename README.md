@@ -47,6 +47,9 @@ In order to retrieve the results zxcvbn provides, just make a `GET` request to y
 https://localhost:3000/api/v1/strength/your_password
 ```
 
+**Note:** Please note that I advise you to URL encode your password before making a GET request to API. In some cases lke that your password contains 
+special characters such as ?, &, %, API might not be able to understand the given password.
+
 API will return an JSON object which contains:
 
 ```json
